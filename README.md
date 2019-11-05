@@ -1,3 +1,4 @@
+Nowa pierwsza linijka
 # TextTransformerIO
 Project for the purpose of Software Engineering classes.
 
