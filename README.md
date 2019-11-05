@@ -1,3 +1,4 @@
+Zmiana na GitHubie.
 # TextTransformerIO
 Project for the purpose of Software Engineering classes.
 
