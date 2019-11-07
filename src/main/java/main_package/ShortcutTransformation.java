@@ -1,7 +1,6 @@
-package com.company;
+package main_package;
 
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class ShortcutTransformation {
 

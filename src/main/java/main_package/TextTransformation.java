@@ -1,6 +1,4 @@
-package com.company;
-
-import java.util.Arrays;
+package main_package;
 
 public class TextTransformation {
 
