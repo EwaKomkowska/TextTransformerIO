@@ -90,4 +90,27 @@ public class TextTransformation {
 
         return new String(result);
     }
+    
+    /**
+     * Function deleted repetitive word
+     * @param text
+     * @return
+     */
+    public static String deleteSample (String text) {
+        String [] result;
+        String finaly = "";
+        result = text.split(" ");
+
+        for (int i = 1; i < result.length; i++)         //usun spacje obok sb
+            if (result[i].equals(""))
+                result[i] = result[i - 1];
+
+        for (int i = 0; i < result.length; i++)         //przejdz po wszystkich wyrazach i sprawdz, czy kolejny nie jest taki sam
+            if (i != result.length - 1 && result[i].equals(result[i + 1]))
+                finaly += "";                              //usun z tablicy - zamien na pusty string
+            else
+                finaly += result[i] + " ";
+
+        return finaly;
+    }
 }
