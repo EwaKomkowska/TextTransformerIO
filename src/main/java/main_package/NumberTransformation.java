@@ -1,4 +1,4 @@
-package com.company;
+package main_package;
 import java.util.HashMap;
 
 class NumberTransformation {

@@ -1,16 +1,10 @@
-package com.company;
+package main_package;
 
-import org.w3c.dom.Text;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.print.attribute.standard.MediaSize;
-import javax.sound.midi.Soundbank;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.HashMap;
-
+@SpringBootApplication
 public class Main {
-
-
 
     public static void main(String[] args) {
         System.out.println(TextTransformation.upper("Państwo Izrael bezprawnie okupuje tereny Palestyny."));
@@ -19,5 +13,6 @@ public class Main {
         System.out.println(TextTransformation.Inverse("Kajak"));
         System.out.println(TextTransformation.Inverse("Motohalucynka"));
 
+        SpringApplication.run(Main.class, args);
     }
 }
