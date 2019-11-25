@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransformController
 {
     @RequestMapping
-    public Transormation answer(@RequestBody String payload){
-        return new Placeholder(TextTransformation.Capital(payload), 1);
+    public Placeholder answer(@RequestBody String payload){
+        return new Placeholder(payload, 1);
     }
 }

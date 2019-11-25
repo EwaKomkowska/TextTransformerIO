@@ -4,7 +4,15 @@ import java.util.HashMap;
 /**
  * Class responsible for all numberical transformations.
  */
-class NumberTransformation extends TransformationDexorator {
+class NumberTransformation extends TransformationDecorator {
+
+    /**
+     * Constructor of number transformation class.
+     * @param t decorating transformation
+     */
+    public NumberTransformation(Transformation t){
+        super(t);
+    }
 
     /**
      * Hashmap with predefined specific word-numbers.

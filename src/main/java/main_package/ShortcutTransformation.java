@@ -5,7 +5,15 @@ import java.util.HashMap;
 /**
  * Class responsible for all shortcut-like transformations.
  */
-public class ShortcutTransformation extends TransformationDexorator {
+public class ShortcutTransformation extends TransformationDecorator {
+
+    /**
+     * Constructor of shortcut transformation class.
+     * @param t decorating transformation
+     */
+    public ShortcutTransformation(Transformation t){
+        super(t);
+    }
 
    private static final HashMap<String,String> shortcutsWord = new HashMap<String, String>() {{
         put("np.", "na przykład ");
@@ -69,9 +77,9 @@ public class ShortcutTransformation extends TransformationDexorator {
 
         for (int i = 0; i < result.length; i++) {           //zakladamy, ze nie ma skrotu jednowyrazowego
             if (i < result.length - 1)
-                switch (toLowerCase(result[i]) + toLowerCase(result[i+1]) ) {
+                switch ((result[i]).toLowerCase() + (result[i+1]).toLowerCase() ) {
                     case "itym":
-                        if (i != result.length - 2 && toLowerCase(result[i+2]).equals("podobne"))
+                        if (i != result.length - 2 && (result[i+2]).toLowerCase().equals("podobne"))
                             finaly += wordShortcuts.get("i tym podobne");
                         i += 2;
                         break;

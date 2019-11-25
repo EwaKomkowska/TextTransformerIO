@@ -2,7 +2,15 @@ package main_package;
 
 import java.util.Arrays;
 
-public class TextTransformation extends TransformationDexorator {
+public class TextTransformation extends TransformationDecorator {
+
+    /**
+     * Constructor of text transformation class.
+     * @param t decorating transformation
+     */
+    public TextTransformation(Transformation t) {
+        super(t);
+    }
 
     /**
      * Function that converts text to UPPER text.
@@ -92,7 +100,8 @@ public class TextTransformation extends TransformationDexorator {
      * 0: upper text
      * 1: lower text
      * 2: inverse text
-     * 3: without repetitions
+     * 3: capital letters
+     * 4: without repetitions
      * @param text custom String given by user
      * @param index transformation index
      * @return text after transformation
@@ -106,6 +115,8 @@ public class TextTransformation extends TransformationDexorator {
             case 2:
                 return inverse(text);
             case 3:
+                return capital(text);
+            case 4:
                 return deleteSample(text);
             default:
                 return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";

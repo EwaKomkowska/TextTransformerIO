@@ -6,6 +6,10 @@ package main_package;
 public abstract class TransformationDecorator implements Transformation {
     private final Transformation decoratedTransformation;
 
+    /**
+     * Constructor of abstract transformation decorator.
+     * @param t decorated transformation
+     */
     public TransformationDecorator(Transformation t) {
         this.decoratedTransformation = t;
     }

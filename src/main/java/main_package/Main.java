@@ -7,12 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(TextTransformation.upper("Państwo Izrael bezprawnie okupuje tereny Palestyny."));
-        System.out.println(TextTransformation.lower("Państwo Izrael bezprawnie okupuje tereny Palestyny."));
-        System.out.println(TextTransformation.Capital("Państwo Izrael bezprawnie okupuje tereny Palestyny."));
-        System.out.println(TextTransformation.Inverse("Kajak"));
-        System.out.println(TextTransformation.Inverse("Motohalucynka"));
 
+        Transformation t = new SimpleTransformation();
+
+        t = new TextTransformation(t);
+        System.out.println(t.transform("Państwo Izrael bezprawnie okupuje tereny Palestyny.",1));
+        System.out.println(t.transform("Państwo Izrael bezprawnie okupuje tereny Palestyny.",2));
         SpringApplication.run(Main.class, args);
     }
 }
