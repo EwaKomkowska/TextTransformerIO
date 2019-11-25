@@ -2,7 +2,10 @@ package main_package;
 
 import java.util.HashMap;
 
-public class ShortcutTransformation {
+/**
+ * Class responsible for all shortcut-like transformations.
+ */
+public class ShortcutTransformation extends TransformationDexorator {
 
    private static final HashMap<String,String> shortcutsWord = new HashMap<String, String>() {{
         put("np.", "na przykład ");
@@ -18,13 +21,11 @@ public class ShortcutTransformation {
         put("Prof.", "Profesor ");
         put("PROF.", "PROFESOR ");
     }};
-
     private static final HashMap<String,String> wordShortcuts = new HashMap<String, String>() {{
         put("na przykład", "np. ");
         put("i tym podobne", "itd. ");
         put("między innymi", "m.in. ");
     }};
-
     private static final HashMap<String,String> latex = new HashMap<String, String>() {{
         put("&", "\\& ");
         put("$", "\\$ ");
@@ -32,10 +33,10 @@ public class ShortcutTransformation {
     
     /**
      * Function to change format to Latex
-     * @param text
-     * @return
+     * @param text String to transformation
+     * @return text after transformation
      */
-    public static String toLatex (String text) {
+    private static String toLatex (String text) {
         String [] result;
         String finaly = "";
         result = text.split(" ");
@@ -56,13 +57,12 @@ public class ShortcutTransformation {
         return finaly;
     }
 
-
     /**
      * Function to reduce words to shortcuts
-     * @param text
-     * @return
+     * @param text String to transformation
+     * @return text after transformation
      */
-    public static String wordToShortcut (String text) {
+    private static String wordToShortcut (String text) {
         String[] result;
         String finaly = "";
         result = text.split(" ");
@@ -94,13 +94,12 @@ public class ShortcutTransformation {
         return finaly;
     }
 
-
     /**
      * Function to expand shortcuts
-     * @param text
-     * @return
+     * @param text String to transformation
+     * @return text after transformation
      */
-    public static String shortcutToWord (String text) {
+    private static String shortcutToWord (String text) {
         String [] result;
         String finaly = "", pom;
         result = text.split(" ");
@@ -114,5 +113,28 @@ public class ShortcutTransformation {
         }
 
         return finaly;
+    }
+
+    /**
+     * Main function that depends on given index returns:
+     * 0: word to shortcut
+     * 1: shortcut to word
+     * 2: to Latex format
+     * @param text custom String given by user
+     * @param index transformation index (doesn't matter in this subclass)
+     * @return text after transformation
+     */
+    @Override
+    public String transform(String text, int index) {
+        switch (index) {
+            case 0:
+                return wordToShortcut(text);
+            case 1:
+                return shortcutToWord(text);
+            case 2:
+                return toLatex(text);
+            default:
+                return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+        }
     }
 }

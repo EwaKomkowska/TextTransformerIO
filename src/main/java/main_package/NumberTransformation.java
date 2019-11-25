@@ -1,7 +1,10 @@
 package main_package;
 import java.util.HashMap;
 
-class NumberTransformation {
+/**
+ * Class responsible for all numberical transformations.
+ */
+class NumberTransformation extends TransformationDexorator {
 
     /**
      * Hashmap with predefined specific word-numbers.
@@ -155,7 +158,7 @@ class NumberTransformation {
         x3 -> x trzy setne
          */
         if (dziesietne == 0 && setne == 0)
-            return text;
+            return "";
         else if (dziesietne == 0 && setne == 1)
             text = text.replace(numbers.get(setne), "jedna setna");
         else if (setne == 2 || setne == 3 || setne == 4) {
@@ -171,20 +174,45 @@ class NumberTransformation {
     /**
      * Function transforming Number to text.
      * Overloaded with Integer.
-     * @param number
-     * @return
+     * @param number variable to transform
+     * @return string value of a given number
      */
-    public static String transformNumber(Integer number) {
+    private static String transformNumber(Integer number) {
         return integers(number);
     }
 
     /**
      * Function transforming Number to text.
      * Overloaded with Double.
-     * @param number
-     * @return
+     * @param number variable to transform
+     * @return string value of a given number
      */
-    public static String transformNumber(Double number) {
-        return integers(number.intValue()) + " i " + hundredths(number);
+    private String transformNumber(Double number) {
+        String text = integers(number.intValue());
+        String temp = hundredths(number);
+        if (!temp.equals("")) {
+            text += (" i " + temp);
+        }
+        return text;
     };
+
+    /**
+     * Public function that transforms every number in text to its text format.
+     * Override from Transformation.
+     * @param text custom String given by user
+     * @param index transformation index (doesn't matter in this subclass)
+     * @return text after transformation
+     */
+    @Override
+    public String transform(String text, int index) {
+        String[] words = text.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            try {
+                words[i] = transformNumber(Double.parseDouble(words[i]));
+            } catch (NumberFormatException | NullPointerException nfe) {
+                continue;
+            }
+        }
+        return String.join(" ", words);
+    }
 }
