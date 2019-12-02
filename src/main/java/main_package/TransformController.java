@@ -1,15 +1,12 @@
 package main_package;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
 /**
- * Class serving as a controller for TextTransformer's Rest API
+ * Class serving as a REST controller for TextTransformer's Rest API
  */
 @RestController
 public class TransformController
@@ -19,9 +16,9 @@ public class TransformController
      * Prepares and sends data in JSON format to the client.
      *
      * @param payload - Body of the PUT request formatted in JSON with fields as follows:
-     *     > text - Text (in string) to be transformed
-     *     > classID - ID number of the class used to transform the text (see below)
-     *     > functionID - ID number of the function from given class which performs the transformation (see below)
+     *     - text - Text (in string) to be transformed
+     *     - classID - ID number of the class used to transform the text (see below)
+     *     - functionID - ID number of the function from given class which performs the transformation (see below)
      *
      *     Classes and function IDs:
      *     Class ID: 1 - Number Transformation
@@ -30,9 +27,9 @@ public class TransformController
      *
      *     Class ID: 2 - Shortcut Transformation
      *        Function ID:
-     *           0 - Transform whole words to its shortcuts, ie. Na przykład -> Np.
-     *           1 - Transform shortcuts to whole words, ie. Np. -> Na przykład.
-     *           2 - Transform particular characters to the LaTeX format, ie. & -> \&
+     *           0 - Transform whole words to its shortcuts, ie. Na przykład - Np.
+     *           1 - Transform shortcuts to whole words, ie. Np. - Na przykład.
+     *           2 - Transform particular characters to the LaTeX format.
      *
      *     Class ID: 3 - Text Transformation
      *         Function ID:
@@ -42,9 +39,10 @@ public class TransformController
      *           3 - Capitalize first letters in each word
      *           4 - Remove repetitive words in text
      *
-     * @return Object containing transformed text along with class and function ID's used to transformation
+     * @return Sends object containing transformed text along with class and function ID's used in transformation
      * in JSON format as a response from the server.
      */
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT)
     public Placeholder answer(@RequestBody String payload)
     {
@@ -55,7 +53,6 @@ public class TransformController
         try
         {
             Placeholder pl = mapper.readValue(payload, Placeholder.class);
-            System.out.println(pl.getText());
 
             // Creating proper object to transform:
 

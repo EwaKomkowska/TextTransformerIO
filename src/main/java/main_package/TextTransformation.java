@@ -2,6 +2,9 @@ package main_package;
 
 import java.util.Arrays;
 
+/**
+ * Class providing a variety of text-based transformations, eg. inversion.
+ */
 public class TextTransformation extends TransformationDecorator {
 
     /**

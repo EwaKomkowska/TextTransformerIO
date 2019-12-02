@@ -15,7 +15,10 @@ public class ShortcutTransformation extends TransformationDecorator {
         super(t);
     }
 
-   private static final HashMap<String,String> shortcutsWord = new HashMap<String, String>() {{
+    /**
+     * Predefined hashmap containing word - shortcut collocation.
+     */
+    private static final HashMap<String,String> shortcutsWord = new HashMap<String, String>() {{
         put("np.", "na przykład ");
         put("Np.", "Na przykład ");
         put("NP.", "Na Przykład ");
@@ -29,11 +32,19 @@ public class ShortcutTransformation extends TransformationDecorator {
         put("Prof.", "Profesor ");
         put("PROF.", "PROFESOR ");
     }};
+
+    /**
+     * Predefined hashmap containing shortcut - word collocation
+     */
     private static final HashMap<String,String> wordShortcuts = new HashMap<String, String>() {{
         put("na przykład", "np. ");
         put("i tym podobne", "itd. ");
         put("między innymi", "m.in. ");
     }};
+
+    /**
+     * Predefined hashmap containing char - latex notation collocation.
+     */
     private static final HashMap<String,String> latex = new HashMap<String, String>() {{
         put("&", "\\& ");
         put("$", "\\$ ");
