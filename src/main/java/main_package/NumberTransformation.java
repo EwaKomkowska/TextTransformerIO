@@ -2,7 +2,7 @@ package main_package;
 import java.util.HashMap;
 
 /**
- * Class responsible for all numberical transformations.
+ * Class responsible for all numerical transformations.
  */
 class NumberTransformation extends TransformationDecorator {
 
