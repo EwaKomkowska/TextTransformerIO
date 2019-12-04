@@ -1,3 +1,5 @@
+package main_package;
+
 import java.util.HashMap;
 
 public class Cipher {
