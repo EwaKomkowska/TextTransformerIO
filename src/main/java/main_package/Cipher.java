@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Cipher {
 
+
     private static final HashMap<String,String> alphabet = new HashMap<String, String>() {{
         put ("a", "ć");
         put ("ą", "d");
