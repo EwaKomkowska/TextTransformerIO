@@ -46,8 +46,8 @@ public class ShortcutTransformation extends TransformationDecorator {
      * Predefined hashmap containing char - latex notation collocation.
      */
     private static final HashMap<String,String> latex = new HashMap<String, String>() {{
-        put("&", "\\& ");
-        put("$", "\\$ ");
+        put("&", "\\&");
+        put("$", "\\$");
     }};
     
     /**
@@ -60,19 +60,24 @@ public class ShortcutTransformation extends TransformationDecorator {
         String finaly = "";
         result = text.split(" ");
 
-        for (int i = 0; i < result.length; i++)
-            switch (result[i]) {
-                case "&":
-                    finaly += latex.get("&");
-                    break;
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[i].length(); j++)
+                switch (result[i].charAt(j)) {
+                    case '&':
+                        finaly += latex.get("&");
+                        break;
 
-                case "$":
-                    finaly += latex.get("$");
-                    break;
+                    case '$':
+                        finaly += latex.get("$");
+                        break;
 
-                default:
-                    finaly += result[i] + " ";
-            }
+                    default:
+                        finaly += result[i].charAt(j);
+                }
+
+            if (i != result.length - 1)
+                finaly += " ";
+        }
         return finaly;
     }
 
@@ -107,8 +112,12 @@ public class ShortcutTransformation extends TransformationDecorator {
                         break;
                 }
             else
-                finaly += result[i];
+                finaly += result[i] + " ";
         }
+
+        //delete end space
+        if (finaly.length() >= 1)
+            finaly = finaly.substring(0, finaly.length()-1);
 
         return finaly;
     }
@@ -130,6 +139,10 @@ public class ShortcutTransformation extends TransformationDecorator {
             else
                 finaly += result[i] + " ";
         }
+
+        //delete end space
+        if (finaly.length() >= 1)
+            finaly = finaly.substring(0, finaly.length()-1);
 
         return finaly;
     }

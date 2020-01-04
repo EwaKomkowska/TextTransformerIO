@@ -39,6 +39,11 @@ public class TransformController
      *           3 - Capitalize first letters in each word
      *           4 - Remove repetitive words in text
      *
+     *     Class ID: 4 - Cipher Transformation
+     *         Function ID:
+     *           0 - Transform text with Caesar Code
+     *           1 - Permutation
+     *
      * @return Sends object containing transformed text along with class and function ID's used in transformation
      * in JSON format as a response from the server.
      */
@@ -67,6 +72,10 @@ public class TransformController
                 }
                 case 3: {
                     t = new TextTransformation(t);
+                    break;
+                }
+                case 4: {
+                    t = new CipherTransformation(t);
                     break;
                 }
                 default: {

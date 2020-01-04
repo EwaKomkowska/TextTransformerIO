@@ -62,15 +62,16 @@ public class TransformationDecoratorTest {
 
         Assert.assertArrayEquals(result, predicted);
     }
-    @Test // change to delete space after
+
+    @Test
     public void repetitionTest() {
         t = new TextTransformation(t);
         String[] predicted = new String[3];
-        String[] result =  {"Spacer do sklepu ", "Spacer do sklepu po bułki ", "Myślę że masz rację "};
+        String[] result =  {"Spacer do sklepu", "Spacer do sklepu po bułki", "Myślę że masz rację"};
 
         predicted[0] = t.transform("Spacer do do do do sklepu", 4);
-        predicted[1] = t.transform("Spacer do do sklepu po po po bułki", 4);
-        predicted[2] = t.transform("Myślę że że masz masz rację", 4);
+        predicted[1] = t.transform("Spacer do do sklepu po po po bułki   ", 4);
+        predicted[2] = t.transform("Myślę że że masz masz rację rację", 4);
 
         Assert.assertArrayEquals(result, predicted);
     }

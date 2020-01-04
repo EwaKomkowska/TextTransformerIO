@@ -92,8 +92,10 @@ public class TextTransformation extends TransformationDecorator {
         for (int i = 0; i < result.length; i++)         //przejdz po wszystkich wyrazach i sprawdz, czy kolejny nie jest taki sam
             if (i != result.length - 1 && result[i].equals(result[i + 1]))
                 finaly += "";                              //usun z tablicy - zamien na pusty string
-            else
+            else if (i != result.length-1)
                 finaly += result[i] + " ";
+            else
+                finaly += result[i];
 
         return finaly;
     }

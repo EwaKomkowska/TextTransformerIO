@@ -2,7 +2,7 @@ package main_package;
 
 import java.util.HashMap;
 
-public class Cipher {
+public class CipherTransformation extends TransformationDecorator{
 
 
     private static final HashMap<String,String> alphabet = new HashMap<String, String>() {{
@@ -42,6 +42,16 @@ public class Cipher {
         put ("ż", "c");
     }};
 
+    /**
+     * Constructor of abstract transformation decorator.
+     *
+     * @param t decorated transformation
+     */
+    public CipherTransformation(Transformation t) {
+        super(t);
+    }
+
+
 
     public static String caesarCode (String text) {
         String [] result, pom;
@@ -62,8 +72,32 @@ public class Cipher {
             finaly += " ";
         }
 
+        //delete end space
+        if (finaly.length() >= 1)
+            finaly = finaly.substring(0, finaly.length()-1);
+
+
         return finaly;
     }
 
 
+    /**
+     * Main function that depends on given index returns:
+     * 0: CipherTransformation
+     * 1: Permutation
+     * @param text custom String given by user
+     * @param index transformation index (doesn't matter in this subclass)
+     * @return text after transformation
+     */
+    @Override
+    public String transform(String text, int index) {
+        switch (index) {
+            case 0:
+                return caesarCode(text);
+            case 1:
+                return "Tutaj musi byc funkcja do transformacji";
+            default:
+                return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+        }
+    }
 }
