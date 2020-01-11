@@ -3,6 +3,8 @@ package main_package;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockito.InOrder;
 
 import static org.mockito.Mockito.*;
 
@@ -14,7 +16,7 @@ public class TransformationDecoratorTest {
     public void setup() {
         st = new SimpleTransformation();
     }
-
+  
     @Test
     public void decorationTest()
     {
@@ -25,7 +27,6 @@ public class TransformationDecoratorTest {
         t.transform("xD");
         verify(st, atLeastOnce()).transform(anyString());
     }
-
     @Test
     public void multipleDecorationTestOfSameClass()
     {
