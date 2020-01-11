@@ -11,8 +11,8 @@ public class ShortcutTransformation extends TransformationDecorator {
      * Constructor of shortcut transformation class.
      * @param t decorating transformation
      */
-    public ShortcutTransformation(Transformation t){
-        super(t);
+    public ShortcutTransformation(Transformation t, int index){
+        super(t, index);
     }
 
     /**
@@ -153,20 +153,26 @@ public class ShortcutTransformation extends TransformationDecorator {
      * 1: shortcut to word
      * 2: to Latex format
      * @param text custom String given by user
-     * @param index transformation index (doesn't matter in this subclass)
      * @return text after transformation
      */
     @Override
-    public String transform(String text, int index) {
-        switch (index) {
+    public String transform(String text)
+    {
+        String result;
+        switch (super.getTransformationIndex()) {
             case 0:
-                return wordToShortcut(text);
+                result = wordToShortcut(text);
+                break;
             case 1:
-                return shortcutToWord(text);
+                result = shortcutToWord(text);
+                break;
             case 2:
-                return toLatex(text);
+                result = toLatex(text);
+                break;
             default:
-                return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+                result = "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+                break;
         }
+        return super.transform(result);
     }
 }

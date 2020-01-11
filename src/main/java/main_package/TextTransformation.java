@@ -11,8 +11,8 @@ public class TextTransformation extends TransformationDecorator {
      * Constructor of text transformation class.
      * @param t decorating transformation
      */
-    public TextTransformation(Transformation t) {
-        super(t);
+    public TextTransformation(Transformation t, int index) {
+        super(t, index);
     }
 
     /**
@@ -108,23 +108,29 @@ public class TextTransformation extends TransformationDecorator {
      * 3: capital letters
      * 4: without repetitions
      * @param text custom String given by user
-     * @param index transformation index
      * @return text after transformation
      */
-    public String transform(String text, int index) {
-        switch (index) {
+    public String transform(String text) {
+        String result;
+        switch (super.getTransformationIndex()) {
             case 0:
-                return upper(text);
+                result = upper(text);
+                break;
             case 1:
-                return lower(text);
+                result = lower(text);
+                break;
             case 2:
-                return inverse(text);
+                result = inverse(text);
+                break;
             case 3:
-                return capital(text);
+                result = capital(text);
+                break;
             case 4:
-                return deleteSample(text);
+                result = deleteSample(text);
+                break;
             default:
-                return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+                result = "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
         }
+        return super.transform(result);
     }
 }

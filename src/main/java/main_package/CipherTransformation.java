@@ -49,10 +49,16 @@ public class CipherTransformation extends TransformationDecorator{
      *
      * @param t decorated transformation
      */
-    public CipherTransformation(Transformation t) {
-        super(t);
+    public CipherTransformation(Transformation t, int index) {
+        super(t, index);
     }
 
+    /**
+     * Function transforming given text to its equivalent in
+     * Caesar cipher
+     * @param text Text to be encrypted
+     * @return Caesar ncrypted text
+     */
     private static String caesarCode (String text) {
         String [] result, pom;
         String finaly = "", letter;
@@ -111,14 +117,18 @@ public class CipherTransformation extends TransformationDecorator{
      * @return text after transformation
      */
     @Override
-    public String transform(String text, int index) {
-        switch (index) {
+    public String transform(String text) {
+        String result;
+        switch (super.getTransformationIndex()) {
             case 0:
-                return caesarCode(text);
+                result = caesarCode(text);
+                break;
             case 1:
-                return permutation(text);
+                result = permutation(text);
             default:
-                return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+                result = "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
+
         }
+        return super.transform(result);
     }
 }
