@@ -1,6 +1,8 @@
 package main_package;
 import java.util.HashMap;
 
+import static java.lang.Math.abs;
+
 /**
  * Class responsible for all numerical transformations.
  */
@@ -10,8 +12,8 @@ class NumberTransformation extends TransformationDecorator {
      * Constructor of number transformation class.
      * @param t decorating transformation
      */
-    public NumberTransformation(Transformation t){
-        super(t);
+    public NumberTransformation(Transformation t, int index){
+        super(t, index);
     }
 
     /**
@@ -200,19 +202,23 @@ class NumberTransformation extends TransformationDecorator {
         String temp = hundredths(number);
         if (!temp.equals("")) {
             text += (" i " + temp);
+            if (abs(number.intValue()) < 1){
+                text = temp;
+            }
         }
+
         return text;
     };
 
     /**
      * Public function that transforms every number in text to its text format.
-     * Override from Transformation.
+     * Override from Transformation - it also takes into consideration previously
+     * decorated transforms
      * @param text custom String given by user
-     * @param index transformation index (doesn't matter in this subclass)
      * @return text after transformation
      */
     @Override
-    public String transform(String text, int index) {
+    public String transform(String text) {
         String[] words = text.split(" ");
         for (int i = 0; i < words.length; i++) {
             try {
@@ -221,6 +227,7 @@ class NumberTransformation extends TransformationDecorator {
                 continue;
             }
         }
-        return String.join(" ", words);
+        String result = String.join(" ", words);
+        return super.transform(result);
     }
 }

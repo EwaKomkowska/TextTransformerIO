@@ -63,19 +63,19 @@ public class TransformController
 
             switch(pl.getClassID()) {
                 case 1: {
-                    t = new NumberTransformation(t);
+                    t = new NumberTransformation(t, pl.getFunctionID());
                     break;
                 }
                 case 2: {
-                    t = new ShortcutTransformation(t);
+                    t = new ShortcutTransformation(t, pl.getFunctionID());
                     break;
                 }
                 case 3: {
-                    t = new TextTransformation(t);
+                    t = new TextTransformation(t, pl.getFunctionID());
                     break;
                 }
                 case 4: {
-                    t = new CipherTransformation(t);
+                    t = new CipherTransformation(t, pl.getFunctionID());
                     break;
                 }
                 default: {
@@ -85,7 +85,7 @@ public class TransformController
                 }
             }
 
-            String text = t.transform(pl.getText(), pl.getFunctionID());
+            String text = t.transform(pl.getText());
 
             return new Placeholder(text, pl.getClassID(), pl.getFunctionID());
         }
