@@ -1,5 +1,7 @@
 package main_package;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CipherTransformation extends TransformationDecorator{
@@ -51,9 +53,7 @@ public class CipherTransformation extends TransformationDecorator{
         super(t);
     }
 
-
-
-    public static String caesarCode (String text) {
+    private static String caesarCode (String text) {
         String [] result, pom;
         String finaly = "", letter;
         result = text.split(" ");
@@ -80,6 +80,27 @@ public class CipherTransformation extends TransformationDecorator{
         return finaly;
     }
 
+    /**
+     * Function which takes text and returns random permutation of its.
+     * @param text text to transform
+     * @return transformed text
+     */
+    private static String permutation(String text) {
+        String ending = "";
+        String[] textArray = text.split(" ");
+        for (String item : textArray) {
+            String[] result;
+            result = textArray[0].split("");
+            Collections.shuffle(Arrays.asList(result));
+
+            if (item != textArray[textArray.length-1]) {
+                ending += (result + " ");
+            } else {
+                ending += result;
+            }
+        }
+        return ending;
+    }
 
     /**
      * Main function that depends on given index returns:
@@ -95,7 +116,7 @@ public class CipherTransformation extends TransformationDecorator{
             case 0:
                 return caesarCode(text);
             case 1:
-                return "Tutaj musi byc funkcja do transformacji";
+                return permutation(text);
             default:
                 return "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
         }

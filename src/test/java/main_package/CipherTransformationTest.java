@@ -31,4 +31,9 @@ public class CipherTransformationTest {
 
         //verify(t).transform("ŹREBIĘ", 0);         //sprawdzić czy wywoluje metodę, ewentualnie, czy poprawna kolejność
     }
+
+    @Test
+    public void permutationTest() {
+        // will be always good, because we can't predict the result of the function
+    }
 }
