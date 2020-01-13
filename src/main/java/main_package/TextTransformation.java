@@ -81,7 +81,7 @@ public class TextTransformation extends TransformationDecorator {
      * @param text given string by user
      * @return text after transformation
      */
-    private static String deleteSample (String text) {
+    protected static String deleteSample (String text) {
         String [] result;
         String finaly = "";
         result = text.split(" ");

@@ -87,7 +87,7 @@ public class ShortcutTransformation extends TransformationDecorator {
      * @param text String to transformation
      * @return text after transformation
      */
-    protected static String wordToShortcut (String text) {
+    static String wordToShortcut (String text) {
         String[] result;
         String finaly = "";
         result = text.split(" ");

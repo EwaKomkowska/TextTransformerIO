@@ -16,7 +16,6 @@ public class TransformationTest {
     @Test
     public void upperTest() {
         Transformation tx = new TextTransformation(t, 0);
-//        t = mock(TextTransformation.class);
 
         String[] predicted = new String[3];
         String[] result =  {"ŹREBIĘ", "MŁODE ŹREBIĘ", "ŹREBIĘ-012"};
@@ -26,13 +25,10 @@ public class TransformationTest {
         predicted[2] = tx.transform("ŹrEbIĘ-012");
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
     @Test
     public void lowerTest() {
         Transformation tx = new TextTransformation(t, 1);
-//        t = mock(TextTransformation.class);
 
         String[] predicted = new String[3];
         String[] result =  {"źrebię", "młode źrebię", "źrebię-012"};
@@ -42,13 +38,10 @@ public class TransformationTest {
         predicted[2] = tx.transform("ŹrEbIĘ-012");
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
     @Test
     public void inverseTest() {
         Transformation tx = new TextTransformation(t, 2);
-//        t = mock(TextTransformation.class);
 
         String[] predicted = new String[3];
         String[] result =  {"Ęiberź", "Edołm Ęiberź", "210-ęiberź"};
@@ -58,14 +51,11 @@ public class TransformationTest {
         predicted[2] = tx.transform("źrebię-012");
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
 
     @Test // change to delete space after
     public void capitalTest() {
         Transformation tx = new TextTransformation(t, 3);
-//        t = mock(TextTransformation.class);
 
         String[] predicted = new String[3];
         String[] result =  {"Źrebię ", "Młode Źrebię ", "Źrebię-012 "};
@@ -75,14 +65,11 @@ public class TransformationTest {
         predicted[2] = tx.transform("źrebię-012");
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
 
     @Test
     public void repetitionTest() {
         Transformation tx = new TextTransformation(t, 4);
-//        t = mock(TextTransformation.class);
 
         String[] predicted = new String[3];
         String[] result =  {"Spacer do sklepu", "Spacer do sklepu po bułki", "Myślę że masz rację"};
@@ -92,13 +79,10 @@ public class TransformationTest {
         predicted[2] = tx.transform("Myślę że że masz masz rację rację");
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
 
     @Test
     public void transformNumberTest() {
-//        t = mock(NumberTransformation.class);
         Transformation tx = new NumberTransformation(t, 0);
 
         String[] predicted = new String[4];
@@ -112,8 +96,6 @@ public class TransformationTest {
 
 
         Assert.assertArrayEquals(result, predicted);
-//        for (int i = 0; i < 3; i++)
-//            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
     }
 
     @Test(expected = NullPointerException.class)
@@ -128,5 +110,17 @@ public class TransformationTest {
         Transformation tx = new TextTransformation(t, -921);
         String f = tx.transform("jakisrandomowytekst");
         Assert.assertEquals("Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!", f);
+    }
+
+    @Test
+    public void removeRepetitionsTest(){
+        String[] predicted = new String[3];
+        String[] result = {"test spacji", "jakosc", "1 0 1"};
+
+        predicted[0] = TextTransformation.deleteSample("test         spacji");
+        predicted[1] = TextTransformation.deleteSample("jakosc jakosc jakosc jakosc");
+        predicted[2] = TextTransformation.deleteSample("1 1 1 0 0 0 1 1 1");
+
+        Assert.assertArrayEquals(result, predicted);
     }
 }
