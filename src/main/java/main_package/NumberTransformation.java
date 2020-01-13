@@ -11,6 +11,7 @@ class NumberTransformation extends TransformationDecorator {
     /**
      * Constructor of number transformation class.
      * @param t decorating transformation
+     * @param index Index of transformation performed by this object
      */
     public NumberTransformation(Transformation t, int index){
         super(t, index);

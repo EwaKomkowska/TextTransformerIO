@@ -48,6 +48,7 @@ public class CipherTransformation extends TransformationDecorator{
      * Constructor of abstract transformation decorator.
      *
      * @param t decorated transformation
+     * @param index Index of transformation to be performed by this object
      */
     public CipherTransformation(Transformation t, int index) {
         super(t, index);
@@ -57,7 +58,7 @@ public class CipherTransformation extends TransformationDecorator{
      * Function transforming given text to its equivalent in
      * Caesar cipher
      * @param text Text to be encrypted
-     * @return Caesar ncrypted text
+     * @return Caesar encrypted text
      */
     private static String caesarCode (String text) {
         String [] result, pom;
@@ -96,13 +97,15 @@ public class CipherTransformation extends TransformationDecorator{
         String[] textArray = text.split(" ");
         for (String item : textArray) {
             String[] result;
-            result = textArray[0].split("");
+            result = item.split("");
             Collections.shuffle(Arrays.asList(result));
 
-            if (item != textArray[textArray.length-1]) {
-                ending += (result + " ");
-            } else {
-                ending += result;
+            for(String letter: result){
+                ending = ending.concat(letter);
+            }
+
+            if (!item.equals(textArray[textArray.length-1])){
+                ending = ending.concat(" ");
             }
         }
         return ending;
@@ -113,7 +116,6 @@ public class CipherTransformation extends TransformationDecorator{
      * 0: CipherTransformation
      * 1: Permutation
      * @param text custom String given by user
-     * @param index transformation index (doesn't matter in this subclass)
      * @return text after transformation
      */
     @Override
@@ -125,6 +127,7 @@ public class CipherTransformation extends TransformationDecorator{
                 break;
             case 1:
                 result = permutation(text);
+                break;
             default:
                 result = "Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!";
 

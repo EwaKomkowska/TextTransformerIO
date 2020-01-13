@@ -10,6 +10,7 @@ public abstract class TransformationDecorator implements Transformation {
     /**
      * Constructor of abstract transformation decorator.
      * @param t decorated transformation
+     * @param idx Index of transformation to be performed by this object
      */
     public TransformationDecorator(Transformation t, int idx) {
         this.decoratedTransformation = t;

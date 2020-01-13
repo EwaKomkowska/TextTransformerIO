@@ -16,6 +16,22 @@ public class ShortcutTransformationTest {
     }
 
     @Test
+    public void toShortcutTest(){
+        String s[] = new String[3];
+        String res[] = {
+                "itp.",
+                "m.in.",
+                "np."
+        };
+        s[0] = ShortcutTransformation.wordToShortcut("i tym podobne");
+        s[1] = ShortcutTransformation.wordToShortcut("między innymi");
+        s[2] = ShortcutTransformation.wordToShortcut("na przykład");
+
+        Assert.assertArrayEquals(s, res);
+    }
+
+
+    @Test
     public void toLatexTest() {
         t = new ShortcutTransformation(t, 2);
 //        t = mock(ShortcutTransformation.class);

@@ -9,7 +9,8 @@ public class TextTransformation extends TransformationDecorator {
 
     /**
      * Constructor of text transformation class.
-     * @param t decorating transformation
+     * @param t Decorated transformation
+     * @param index Index of transformation performed by this object
      */
     public TextTransformation(Transformation t, int index) {
         super(t, index);

@@ -10,6 +10,7 @@ public class ShortcutTransformation extends TransformationDecorator {
     /**
      * Constructor of shortcut transformation class.
      * @param t decorating transformation
+     * @param index Index of transformation performed by this object
      */
     public ShortcutTransformation(Transformation t, int index){
         super(t, index);
@@ -38,7 +39,7 @@ public class ShortcutTransformation extends TransformationDecorator {
      */
     private static final HashMap<String,String> wordShortcuts = new HashMap<String, String>() {{
         put("na przykład", "np. ");
-        put("i tym podobne", "itd. ");
+        put("i tym podobne", "itp. ");
         put("między innymi", "m.in. ");
     }};
 
@@ -86,7 +87,7 @@ public class ShortcutTransformation extends TransformationDecorator {
      * @param text String to transformation
      * @return text after transformation
      */
-    private static String wordToShortcut (String text) {
+    protected static String wordToShortcut (String text) {
         String[] result;
         String finaly = "";
         result = text.split(" ");

@@ -3,7 +3,6 @@ package main_package;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 public class TransformationTest {
     private Transformation t;
@@ -12,6 +11,7 @@ public class TransformationTest {
     public void setup() {
         t = new SimpleTransformation();
     }
+
 
     @Test
     public void upperTest() {
@@ -114,5 +114,19 @@ public class TransformationTest {
         Assert.assertArrayEquals(result, predicted);
 //        for (int i = 0; i < 3; i++)
 //            when(t.transform(predicted[i], 0)).thenReturn(result[i]);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void nullStringTest() {
+        String x = t.transform(null);
+        x = x.toLowerCase();
+        System.out.println(x);
+    }
+
+    @Test
+    public void indexNotFoundTest(){
+        Transformation tx = new TextTransformation(t, -921);
+        String f = tx.transform("jakisrandomowytekst");
+        Assert.assertEquals("Uratowałeś mnie! Ale Twoja funkcja jest w innym zamku!", f);
     }
 }
