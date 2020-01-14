@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 import static org.mockito.Mockito.*;
 
 public class TransformationDecoratorTest {
@@ -88,5 +90,29 @@ public class TransformationDecoratorTest {
                 "}");
         Assert.assertEquals(pl1.getText(), "Error");
         Assert.assertEquals(pl2.getText(), "Error");
+    }
+
+    @Test
+    public void collectionOfMocksTest(){
+        ShortcutTransformation sc1 = mock(ShortcutTransformation.class);
+        ShortcutTransformation sc2 = mock(ShortcutTransformation.class);
+        ShortcutTransformation sc3 = mock(ShortcutTransformation.class);
+        ShortcutTransformation sc4 = mock(ShortcutTransformation.class);
+
+        LinkedList<ShortcutTransformation> list = new LinkedList<>();
+
+        list.add(sc1);
+        list.add(sc2);
+        list.add(sc3);
+        list.add(sc4);
+
+        for(ShortcutTransformation transform: list){
+            transform.transform("XDD");
+        }
+
+        verify(list.get(0), atLeastOnce()).transform("XDD");
+        verify(list.get(1), atLeastOnce()).transform("XDD");
+        verify(list.get(2), atLeastOnce()).transform("XDD");
+        verify(list.get(3), atLeastOnce()).transform("XDD");
     }
 }
